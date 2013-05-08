@@ -1,9 +1,9 @@
 body{
-	color:#b0b0b0;
-  background:#303030;
 }
 a{
-	color:#0c0;
+	color:#808080;
 	text-decoration:none;
 }
-a:hover{color:yellow;}
+a:hover{
+	color:#000;
+}
