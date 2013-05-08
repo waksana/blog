@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article>
+	<h3>{{page.title}}</h3>
+	<section>
+		<time>{{page.date|date:"%Y-%m-%d"}}</time>
+		{%for tag in page.tags%}
+		<a href='/tags.html#{{tag}}'>#{{tag}}</a>
+		{%endfor%}
+	</section>
+	<section>
+		{{content}}
+	</section>
+</article>
