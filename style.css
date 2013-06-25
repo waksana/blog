@@ -1,9 +1,6 @@
-body{
-}
-a{
-	color:#808080;
-	text-decoration:none;
-}
-a:hover{
-	color:#000;
-}
+body{margin:0;min-width:500px;}
+a{text-decoration:none;}
+nav{background:#333;padding:5px 0}
+nav a{color:#999;font-size:20px;margin:0 5px;font-weight:bold}
+nav a:hover{color:white;}
+article{margin:5px;}

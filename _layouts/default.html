@@ -3,20 +3,24 @@
 	<head>
 		<meta charset='utf-8' />
 		<title>
-			{%if page.title%}{{page.title}}-{%endif%}wait a ksana
+			{%if page.title%}{{page.title}}-{%endif%}且慢
 		</title>
 		<link rel='stylesheet' href='style.css' />
+    {%if page.nav%}
+      <style>#{{page.nav}}{color:white;}</style>
+    {%endif%}
 	</head>
 	<body>
 		<header>
-			<h1><a href='/'>wait a ksana</a></h1>
 			<nav>
-				<a href='/archive.html'>archive</a>
-				<a href='/tag.html'>tag</a>
-				<a href='/about.html'>about</a>
+			  <a href='/' id='main'>且慢</a>
+				<a href='/archive.html' id='arch'>日志</a>
+				<a href='/tag.html' id='tag'>标签</a>
 			</nav>
 		</header>
-		{{content}}
+    <div>
+      {{content}}
+    </div>
 		<footer></footer>
 	</body>
 </html>
