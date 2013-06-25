@@ -1,2 +1,2 @@
 permalink: /:title.html
-#markdown: rdiscount
+markdown: rdiscount
