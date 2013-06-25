@@ -2,8 +2,4 @@
 layout: page
 title: waksana
 ---
-just a kid.
-
-my english is poor but I have to use it cause my poor PC can not input Chinese chars, it is funny!
-
-laugh at myself!
+我还没想好这个地方说点什么，可是这个网站好像还没完全建好的样子。
