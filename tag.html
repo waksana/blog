@@ -13,8 +13,10 @@ nav: tag
 	<li id='{{tag[0]}}'>{{tag[0]}}</li>
 	<ul>
 		{%for post in tag[1]%}
-		<time>{{post.date|date:"%Y-%m-%d"}}</time>
-		<a href='{{post.url}}'>{{post.title}}</a>
+    <li>
+      <time>{{post.date|date:"%Y-%m-%d"}}</time>
+      <a href='{{post.url}}'>{{post.title}}</a>
+    </li>
 		{%endfor%}
 	</ul>
 	{%endfor%}
