@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>snake</title>
+    <script src="snake.js"></script>
+  </head>
+  <body>
+    <canvas id="can" width="500" height="500">
+    </canvas>
+    <script>
+      window.onload=function(){
+        init();
+        int=self.setInterval('move()',100);
+      };
+    </script>
+  </body>
+</html>
