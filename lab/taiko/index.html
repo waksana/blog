@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="chi.js"></script>
+<script>
+var i=0,j=0,k,ct,staytime=3000,stay=200,t=0,yt=50,score=0,fi=Math.round(stay*800/(staytime+stay));
+function dr(col,x,y,r){
+  cxt.fillStyle=col;
+  cxt.beginPath();
+  cxt.arc(x,y,r,0,Math.PI*2,true);
+  cxt.closePath();
+  cxt.fill();
+}
+function wak(){
+  ct=music.currentTime*1000;
+  if(o[i][0]&&ct-o[i][0]>stay)i++;
+  if(o[j][0]&&o[j][0]-ct<staytime)j++;
+  if(o[t][0]&&o[t][0]-ct<-50)t++;
+  cxt.fillStyle='white';
+  cxt.fillRect(0,0,800,200);
+  dr('yellow',fi,100,15);
+  for(k=i;k<j;k++){
+    p=Math.round((o[k][0]-ct+stay)*800/(staytime+stay));
+    if(o[k][1]==0)dr('blue',p,100,15);
+    else dr('red',p,100,15);
+  }
+}
+window.document.onkeydown=function(event){
+  ec=event.keyCode;
+  if((ec==70||ec==74)&&o[t][1]==0&&(Math.abs(music.currentTime*1000-o[t][0])<50)){
+  score++;
+  dr('yellow',fi,100,25);
+  }
+  if((ec==68||ec==75)&&o[t][1]==1&&(Math.abs(music.currentTime*1000-o[t][0])<50)){
+  score++;
+  dr('yellow',fi,100,25);
+  }
+  sc.innerHTML=score;
+}
+</script>
+<style>
+#ins{height:200px;width:800px;
+</style>
+</head>
+<body>
+<canvas id="ins"></canvas>
+<audio src="music.mp3" id="music" controls="controls"></audio>
+<div id="score"></div>
+<script>
+var sc=document.getElementById('score');
+var music=document.getElementById('music');
+var can=document.getElementById('ins');
+var cxt=can.getContext('2d');
+int=self.setInterval('wak()',25);
+</script>
+<body>
+</html>
