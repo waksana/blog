@@ -1,49 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>taiko</title>
 <script src="chi.js"></script>
 <script>
-var i=0,j=0,k,ct,staytime=3000,stay=200,t=0,yt=50,score=0,fi=Math.round(stay*800/(staytime+stay));
-function dr(col,x,y,r){
-  cxt.fillStyle=col;
+var 
+  canY=60,//画布高度
+  canX=800,//画布宽度
+  bRadius=canY/2,//大鼓点半径
+  dRadius=Math.round(bRadius*.75),//普通鼓点半径
+  pTime=75,//可的应值
+  oTime=25,//良的应值
+  dY=canY/2,//鼓点Y位置
+  dTime=2200,//鼓点通过进度条时间
+  fTime=300,//失败鼓点后续
+  mX=Math.round(fTime*canX/dTime)//打击点
+  di=0,//在屏幕上显示鼓点开始
+  dj=0,//在屏幕上显示鼓点结束
+  dk=0,//当前可能要敲击的鼓点
+  score=0,//分数
+  Round=Math.PI*2;
+function wak(){
+  var k,ct=music.currentTime*1000;
+  if(o[di]&&ct-o[di][0]>fTime)di++;
+  if(o[dj]&&o[dj][0]-ct<dTime)dj++;
+  if(o[dk]&&ct-o[dk][0]>pTime)dk++;
+  cxt.clearRect(0,0,canX,canY);
   cxt.beginPath();
-  cxt.arc(x,y,r,0,Math.PI*2,true);
+  cxt.fillStyle='red';
+  for(k=di;k<dj;k++){
+    if(o[k][1]==0){
+      p=Math.round((o[k][0]-ct+fTime)*canX/dTime);
+      cxt.arc(p,dY,dRadius,0,Round,true);
+    }
+  }
+  cxt.closePath();
+  cxt.fill();
+  cxt.beginPath();
+  cxt.fillStyle='blue';
+  for(k=di;k<dj;k++){
+    if(o[k][1]==8){
+      p=Math.round((o[k][0]-ct+fTime)*canX/dTime);
+      cxt.arc(p,dY,dRadius,0,Round,true);
+    }
+  }
   cxt.closePath();
   cxt.fill();
 }
-function wak(){
-  ct=music.currentTime*1000;
-  if(o[i][0]&&ct-o[i][0]>stay)i++;
-  if(o[j][0]&&o[j][0]-ct<staytime)j++;
-  if(o[t][0]&&o[t][0]-ct<-50)t++;
-  cxt.fillStyle='white';
-  cxt.fillRect(0,0,800,200);
-  dr('yellow',fi,100,15);
-  for(k=i;k<j;k++){
-    p=Math.round((o[k][0]-ct+stay)*800/(staytime+stay));
-    if(o[k][1]==0)dr('red',p,100,15);
-    else dr('blue',p,100,15);
-  }
-}
 window.document.onkeydown=function(event){
-  ec=event.keyCode;
-  if((ec==70||ec==74)&&o[t][1]==0&&(Math.abs(music.currentTime*1000-o[t][0])<50)){
-  score++;
-  dr('yellow',fi,100,25);
+  var res='不可',pScore='',ct,color,ec=event.keyCode;
+  if(ec==70||ec==74||ec==68||ec==75){
+    ct=Math.abs(music.currentTime*1000-o[dk][0]);
+    if(ct<pTime){
+      if(ec==70||ec==74)color=0;
+      else color=8;
+      if(o[dk][1]==color){
+        if(ct>25){
+          pScore=150;
+          res='可';
+        }
+        else{
+          pScore=300;
+          res='良';
+        }
+        score+=pScore;
+      }
+      o[dk][1]=9;
+    }
   }
-  if((ec==68||ec==75)&&o[t][1]==8&&(Math.abs(music.currentTime*1000-o[t][0])<50)){
-  score++;
-  dr('yellow',fi,100,25);
-  }
-  sc.innerHTML=score;
+  sc.innerHTML='<p>'+res+' '+pScore+'</p><p>'+score+'</p>';
 }
 </script>
 <style>
-#ins{height:200px;width:800px;
+#ins{position:absolute;}
 </style>
 </head>
 <body>
-<canvas id="ins"></canvas>
+<canvas id="background" height="60" width="800"></canvas>
+<canvas id="ins" height="60" width="800"></canvas>
+</div>
 <audio src="music.mp3" id="music" controls="controls"></audio>
 <div id="score"></div>
 <script>
@@ -51,6 +86,18 @@ var sc=document.getElementById('score');
 var music=document.getElementById('music');
 var can=document.getElementById('ins');
 var cxt=can.getContext('2d');
+var back=document.getElementById('background');
+var cback=back.getContext('2d');
+cback.beginPath();
+cback.fillStyle='yellow';
+cback.arc(mX,dY,bRadius,0,Round,true);
+cback.fill();
+cback.closePath();
+cback.beginPath();
+cback.fillStyle='green';
+cback.arc(mX,dY,dRadius,0,Round,true);
+cback.fill();
+cback.closePath();
 int=self.setInterval('wak()',25);
 </script>
 <body>
