@@ -27,6 +27,7 @@ var score,music,track,ins,di,dj,dk,don,ka,noti,red,blue,white,int;
 var hitPoint=Math.round(fTime*canX/dTime);
 var midY=canY/2;
 var dRadius=Math.round(midY*.75);
+var dWhite=dRadius*2.5;
 function drawCircle(context,color,x,y,radius){
   context.fillStyle=color;
   context.beginPath();
@@ -57,12 +58,13 @@ window.onload=function(){
   red=document.createElement('canvas');
   blue=document.createElement('canvas');
   white=document.createElement('canvas');
-  white.height=white.width=red.height=blue.height=red.width=blue.width=dRadius*2;
+  white.height=white.width=dWhite;
+  red.height=blue.height=red.width=blue.width=dRadius*2;
   var cd=red.getContext('2d');
   var ck=blue.getContext('2d'); 
   var cw=white.getContext('2d');
-  cw.drawImage(face,0,0,dRadius*2,dRadius*2);
-  cw.drawImage(circle,0,0,dRadius*2,dRadius*2);
+  cw.drawImage(face,0,0,dWhite,dWhite);
+  cw.drawImage(circle,0,0,dWhite,dWhite);
   cd.drawImage(faceRed,0,0,dRadius*2,dRadius*2);
   ck.drawImage(faceBlue,0,0,dRadius*2,dRadius*2);
   init();
@@ -105,7 +107,7 @@ function wak(){
       track.drawImage(red,p-midY,0,canY,canY);
     }
     else if(ins[k][1]==9){
-      track.drawImage(white,p-dRadius,midY-dRadius);
+      track.drawImage(white,p-dWhite/2,midY-dWhite/2);
     }
   }
 }
