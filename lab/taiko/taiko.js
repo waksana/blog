@@ -2,7 +2,7 @@ var faceRed=new Image();
 var faceBlue=new Image();
 faceRed.src='red.png';
 faceBlue.src='blue.png';
-var donkai=10;
+var donkai=15;
 var don=new Array(donkai);
 var ka=new Array(donkai);
 var doni,kai;
@@ -30,9 +30,19 @@ function drawCircle(context,color,x,y,radius){
   context.closePath();
   context.fill();
 }
+function pause(){
+  if(music.paused)music.play();
+  else music.pause();
+}
+function restart(){
+  music.currentTime=0;
+  music.pause();
+  init();
+}
 window.onload=function(){
   noti=document.getElementById('score');
-  music=document.getElementById('music');
+  music=document.createElement('audio');
+  music.src='music.mp3';
   track=cxt('track');
   function cxt(id){
     var can=document.getElementById(id);
@@ -47,12 +57,13 @@ window.onload=function(){
   cd.drawImage(faceRed,0,0,dRadius*2,dRadius*2);
   ck.drawImage(faceBlue,0,0,dRadius*2,dRadius*2);
   init();
-  //int=self.setInterval('auto()',25);
-  //int=self.setInterval('wak()',25);
 }
 function init(){
   doni=kai=score=di=dj=dk=0;
   ins=o.slice(0);
+  for(var i=0;i<o.length;i++){
+    ins[i]=o[i].slice(0);
+  }
 }
 function pdon(){
   don[doni].play();
@@ -65,7 +76,7 @@ function pka(){
 function start(mode){
   //init();
   if(int)self.clearInterval(int);
-  int=self.setInterval(mode,25);
+  int=self.setInterval(mode,15);
   music.play();
 }
 function wak(){

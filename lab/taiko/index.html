@@ -9,9 +9,12 @@
 <body>
   <canvas id="track" height="60" width="800"></canvas>
   <canvas id="bg" height="60" width="800"></canvas>
-  <audio src="music.mp3" id="music" controls="controls"></audio>
-  <button onclick="start('wak()')">手动</button>
-  <button onclick="start('auto()')">自动</button>
+  <div id="control">
+    <button onclick="start('wak()')">手动</button>
+    <button onclick="start('auto()')">自动</button>
+    <button onclick="pause()">暂停</button>
+    <button onclick="restart()">复位</button>
+  </div>
   <div id="score"></div>
 </body>
 </html>
