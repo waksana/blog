@@ -44,6 +44,8 @@ function restart(){
   music.pause();
   init();
 }
+function fullspeed(){music.playbackRate=1;}
+function slow(){music.playbackRate=.75;}
 window.onload=function(){
   noti=document.getElementById('score');
   music=document.createElement('audio');
@@ -77,10 +79,12 @@ function init(){
   }
 }
 function pdon(){
+  //return;
   don[doni].play();
   doni=(doni+1)%donkai;
 }
 function pka(){
+  //return;
   ka[kai].play();
   kai=(kai+1)%donkai;
 }
@@ -91,9 +95,9 @@ function start(mode){
 }
 function wak(){
   var k,ct=music.currentTime*1000;
-  if(ins[di]&&ct-ins[di][0]>fTime)di++;
-  if(ins[dj]&&ins[dj][0]-ct<dTime)dj++;
-  if(ins[dk]&&ct-ins[dk][0]>pTime)dk++;
+  while(ins[di]&&ct-ins[di][0]>fTime)di++;
+  while(ins[dj]&&ins[dj][0]-ct<dTime)dj++;
+  while(ins[dk]&&(ins[dk][1]==9||ct-ins[dk][0]>pTime))dk++;
   track.clearRect(0,0,canX,canY);
   for(k=dj-1;k>=di;k--){
     p=Math.round((ins[k][0]-ct+fTime)*canX/dTime);
@@ -106,9 +110,9 @@ function wak(){
     else if(ins[k][1]==4){
       track.drawImage(red,p-midY,0,canY,canY);
     }
-    else if(ins[k][1]==9){
+    /*else if(ins[k][1]==9){
       track.drawImage(white,p-dWhite/2,midY-dWhite/2);
-    }
+    }*/
   }
 }
 function auto(){
@@ -154,6 +158,9 @@ window.document.onkeydown=function(event){
         ins[dk][1]=9;
         pScore=400;
         res='击中大鼓';
+      }
+      else{
+        res='wrong color';
       }
     }
   }
