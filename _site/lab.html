@@ -1,51 +1,60 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset='utf-8' />
-		<title>
-			杂物-且慢
-		</title>
-		<link rel='stylesheet' href='/style.css' />
+  <head>
+    <meta charset='utf-8' />
+    <title>
+      杂物-且慢
+    </title>
+    <link rel='stylesheet' href='bootstrap.css' />
+  </head>
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <a class="brand" href="/">且慢</a>
+        <ul class="nav">
+          <li id="arch"><a href='/archive.html'>日志</a></li>
+          <li id='resume'><a href='/resume.html'>简历</a></li>
+          <li id='lab'><a href='/lab.html'>杂货</a></li>
+        </ul>
+      </div>
+    </div>
     
-      <style>#lab{color:white;}</style>
+    <script>
+      document.getElementById('lab').
+        className="active";
+    </script>
     
-	</head>
-	<body>
-		<header>
-			<nav>
-			  <a href='/' id='main'>且慢</a>
-				<a href='/archive.html' id='arch'>日志</a>
-        <a href='/resume.html' id='resume'>简历</a>
-        <a href='/lab.html' id='lab'>杂货</a>
-			</nav>
-		</header>
-    <div id='content'>
-      <h3>就是好玩的东西</h3>
-<ul>
-  <li>
-    <p><a href='lab/lov8'>scheme解释器</a>:js实现的scheme解释器半成品。只有四则运算功能，还有个define功能，可是有点问题。</p>
-  </li>
-  <li>
-    <p><a href="lab/life">细胞</a>:就是模拟生命哟,可是规则是我乱来的,每次刷新的效果都是不一样的。生成的图形有点像奶牛身上的图形，难道冥冥中有什么联系？！</p>
-  </li>
-  <li>
-    <p><a href="lab/snake">双人贪吃蛇</a>:这个双人贪吃蛇可不是两条蛇抢吃的，而是比谁活得久。通过WASD和上下左右控制，两条蛇都在不断的变长，谁撞到墙或者蛇上就算输，所以要留给对方很小的空间，有点围棋的味道哦。</p>
-  </li>
-  <li>
-    <p><a href="http://dacheng.duapp.com">大成</a>:这是一个管理成就的小站点，我也不知道该怎么介绍</p>
-  </li>
-  <li>
-    <p><a href="lab/taiko">太鼓</a>:刚刚完成一点点点，就是能玩，结尾好像有点问题，下面的数字是你击中的个数，F和J红色鼓点，DK蓝色鼓点。不知道为什么圆是椭圆，不过无所谓，因为以后要用图标的。</p>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3>就是好玩的东西</h3>
+<dl>
+  <dt><a href='lab/lov8'>scheme解释器</a></dt>
+  <dd>
+    <p>js实现的scheme解释器半成品。只有四则运算功能，还有个define功能，可是有点问题。</p>
+  </dd>
+  <dt><a href="lab/ddfe">细胞</a></dt>
+  <dd>
+    <p>就是模拟生命哟,可是规则是我乱来的,每次刷新的效果都是不一样的。生成的图形有点像奶牛身上的图形，难道冥冥中有什么联系？！</p>
+  </dd>
+  <dt><a href="lab/snake">双人贪吃蛇</a></dt>
+  <dd>
+    <p>这个双人贪吃蛇可不是两条蛇抢吃的，而是比谁活得久。通过WASD和上下左右控制，两条蛇都在不断的变长，谁撞到墙或者蛇上就算输，所以要留给对方很小的空间，有点围棋的味道哦。</p>
+  </dd>
+  <dt><a href="http://dacheng.duapp.com">大成</a></dt>
+  <dd>
+    <p>这是一个管理成就的小站点，我也不知道该怎么介绍</p>
+  </dd>
+  <dt><a href="lab/taiko">太鼓</a></dt>
+  <dd>
+    <p>刚刚完成一点点点，就是能玩，结尾好像有点问题，下面的数字是你击中的个数，F和J红色鼓点，DK蓝色鼓点。不知道为什么圆是椭圆，不过无所谓，因为以后要用图标的。</p>
     <p>0.0.1:解决了若干问题，看上去有点正常了</p>
     <p>0.0.2:鼓点做了一下，敲打的声音也有了</p>
-  </li>
-</ul>
+  </dd>
+</dl>
 
+        </div>
+      </div>
     </div>
-		<footer></footer>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd764d28cada8e1a7a6f120030c2faf6d' type='text/javascript'%3E%3C/script%3E"));
-</script>
-	</body>
+  </body>
 </html>

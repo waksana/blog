@@ -1,124 +1,179 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset='utf-8' />
-		<title>
-			日志-且慢
-		</title>
-		<link rel='stylesheet' href='/style.css' />
+  <head>
+    <meta charset='utf-8' />
+    <title>
+      日志-且慢
+    </title>
+    <link rel='stylesheet' href='bootstrap.css' />
+  </head>
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <a class="brand" href="/">且慢</a>
+        <ul class="nav">
+          <li id="arch"><a href='/archive.html'>日志</a></li>
+          <li id='resume'><a href='/resume.html'>简历</a></li>
+          <li id='lab'><a href='/lab.html'>杂货</a></li>
+        </ul>
+      </div>
+    </div>
     
-      <style>#arch{color:white;}</style>
+    <script>
+      document.getElementById('arch').
+        className="active";
+    </script>
     
-	</head>
-	<body>
-		<header>
-			<nav>
-			  <a href='/' id='main'>且慢</a>
-				<a href='/archive.html' id='arch'>日志</a>
-        <a href='/resume.html' id='resume'>简历</a>
-        <a href='/lab.html' id='lab'>杂货</a>
-			</nav>
-		</header>
-    <div id='content'>
-      <h3>日志列表</h3>
-<ul>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3>日志列表</h3>
+<ul class="unstyled">
   
   <li>
-    <time>2013-05-22</time>
-    <h3><a href='/pal5a.html'>仙剑五前传</a></h3>
-    
-      <a href="#游戏" class="tag">游戏</a>
-    
+  <h4>
+    <a href='/pal5a.html'>仙剑五前传</a>
+    <small>
+      
+      <a href="#游戏" class="tag"><span class="label">游戏</span></a>
+      
+      <time>2013-05-22</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2013-05-13</time>
-    <h3><a href='/blog.html'>有关这个博客</a></h3>
-    
-      <a href="#博客" class="tag">博客</a>
-    
+  <h4>
+    <a href='/blog.html'>有关这个博客</a>
+    <small>
+      
+      <a href="#博客" class="tag"><span class="label">博客</span></a>
+      
+      <time>2013-05-13</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2013-01-21</time>
-    <h3><a href='/esystem.html'>气功系统</a></h3>
-    
-      <a href="#儒释道" class="tag">儒释道</a>
-    
+  <h4>
+    <a href='/esystem.html'>气功系统</a>
+    <small>
+      
+      <a href="#儒释道" class="tag"><span class="label">儒释道</span></a>
+      
+      <time>2013-01-21</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2012-09-28</time>
-    <h3><a href='/gradtrain.html'>毕业实训</a></h3>
-    
-      <a href="#随笔" class="tag">随笔</a>
-    
+  <h4>
+    <a href='/gradtrain.html'>毕业实训</a>
+    <small>
+      
+      <a href="#随笔" class="tag"><span class="label">随笔</span></a>
+      
+      <time>2012-09-28</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2012-08-23</time>
-    <h3><a href='/somegame.html'>一些游戏</a></h3>
-    
-      <a href="#游戏" class="tag">游戏</a>
-    
+  <h4>
+    <a href='/somegame.html'>一些游戏</a>
+    <small>
+      
+      <a href="#游戏" class="tag"><span class="label">游戏</span></a>
+      
+      <time>2012-08-23</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2012-02-03</time>
-    <h3><a href='/arroftime.html'>时间之箭</a></h3>
-    
-      <a href="#随笔" class="tag">随笔</a>
-    
+  <h4>
+    <a href='/arroftime.html'>时间之箭</a>
+    <small>
+      
+      <a href="#随笔" class="tag"><span class="label">随笔</span></a>
+      
+      <time>2012-02-03</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2011-12-25</time>
-    <h3><a href='/firstmete.html'>初识周易</a></h3>
-    
-      <a href="#儒释道" class="tag">儒释道</a>
-    
+  <h4>
+    <a href='/firstmete.html'>初识周易</a>
+    <small>
+      
+      <a href="#儒释道" class="tag"><span class="label">儒释道</span></a>
+      
+      <time>2011-12-25</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2009-08-13</time>
-    <h3><a href='/pal3addon.html'>仙剑3配音外挂</a></h3>
-    
-      <a href="#纪念" class="tag">纪念</a>
-    
-      <a href="#游戏" class="tag">游戏</a>
-    
+  <h4>
+    <a href='/pal3addon.html'>仙剑3配音外挂</a>
+    <small>
+      
+      <a href="#纪念" class="tag"><span class="label">纪念</span></a>
+      
+      <a href="#游戏" class="tag"><span class="label">游戏</span></a>
+      
+      <time>2009-08-13</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2009-02-08</time>
-    <h3><a href='/timegoseon.html'>今天统测，明天高考</a></h3>
-    
-      <a href="#随笔" class="tag">随笔</a>
-    
+  <h4>
+    <a href='/timegoseon.html'>今天统测，明天高考</a>
+    <small>
+      
+      <a href="#随笔" class="tag"><span class="label">随笔</span></a>
+      
+      <time>2009-02-08</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2008-07-05</time>
-    <h3><a href='/thelament.html'>谪仙</a></h3>
-    
-      <a href="#随笔" class="tag">随笔</a>
-    
+  <h4>
+    <a href='/thelament.html'>谪仙</a>
+    <small>
+      
+      <a href="#随笔" class="tag"><span class="label">随笔</span></a>
+      
+      <time>2008-07-05</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2008-06-01</time>
-    <h3><a href='/mylab.html'>我的实验室</a></h3>
-    
-      <a href="#纪念" class="tag">纪念</a>
-    
+  <h4>
+    <a href='/mylab.html'>我的实验室</a>
+    <small>
+      
+      <a href="#纪念" class="tag"><span class="label">纪念</span></a>
+      
+      <time>2008-06-01</time>
+    </small>
+  </h4>
   </li>
   
   <li>
-    <time>2008-01-30</time>
-    <h3><a href='/rubyman.html'>宝石真人</a></h3>
-    
-      <a href="#游记" class="tag">游记</a>
-    
+  <h4>
+    <a href='/rubyman.html'>宝石真人</a>
+    <small>
+      
+      <a href="#游记" class="tag"><span class="label">游记</span></a>
+      
+      <time>2008-01-30</time>
+    </small>
+  </h4>
   </li>
   
 </ul>
@@ -126,21 +181,21 @@
 <h3>标签</h3>
 <div id="tags">
   
-    <a href="#游记" class="tag">游记</a>
+  <a href="#游记" class="tag"><span class="label">游记</span></a>
   
-    <a href="#纪念" class="tag">纪念</a>
+  <a href="#纪念" class="tag"><span class="label">纪念</span></a>
   
-    <a href="#随笔" class="tag">随笔</a>
+  <a href="#随笔" class="tag"><span class="label">随笔</span></a>
   
-    <a href="#游戏" class="tag">游戏</a>
+  <a href="#游戏" class="tag"><span class="label">游戏</span></a>
   
-    <a href="#儒释道" class="tag">儒释道</a>
+  <a href="#儒释道" class="tag"><span class="label">儒释道</span></a>
   
-    <a href="#博客" class="tag">博客</a>
+  <a href="#博客" class="tag"><span class="label">博客</span></a>
   
 </div>
 
-<ul>
+<ul class="unstyled">
   
     <li id='游记'><strong>游记</strong></li>
     <ul>
@@ -239,11 +294,8 @@
   
 </ul>                                    
 
+        </div>
+      </div>
     </div>
-		<footer></footer>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd764d28cada8e1a7a6f120030c2faf6d' type='text/javascript'%3E%3C/script%3E"));
-</script>
-	</body>
+  </body>
 </html>

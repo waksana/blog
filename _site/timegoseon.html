@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset='utf-8' />
-		<title>
-			今天统测，明天高考-且慢
-		</title>
-		<link rel='stylesheet' href='/style.css' />
+  <head>
+    <meta charset='utf-8' />
+    <title>
+      今天统测，明天高考-且慢
+    </title>
+    <link rel='stylesheet' href='bootstrap.css' />
+  </head>
+  <body>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <a class="brand" href="/">且慢</a>
+        <ul class="nav">
+          <li id="arch"><a href='/archive.html'>日志</a></li>
+          <li id='resume'><a href='/resume.html'>简历</a></li>
+          <li id='lab'><a href='/lab.html'>杂货</a></li>
+        </ul>
+      </div>
+    </div>
     
-      <style>#arch{color:white;}</style>
+    <script>
+      document.getElementById('arch').
+        className="active";
+    </script>
     
-	</head>
-	<body>
-		<header>
-			<nav>
-			  <a href='/' id='main'>且慢</a>
-				<a href='/archive.html' id='arch'>日志</a>
-        <a href='/resume.html' id='resume'>简历</a>
-        <a href='/lab.html' id='lab'>杂货</a>
-			</nav>
-		</header>
-    <div id='content'>
-      <article>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <article>
 	<h3>今天统测，明天高考</h3>
 	<section>
 		<time>2009-02-08</time>
 		
-		<a href='/tag.html#随笔'>#随笔</a>
+		<a href='/archive.html#随笔'>#随笔</a>
 		
 	</section>
 	<section>
@@ -67,11 +74,8 @@ var duoshuoQuery = {short_name:"waksana"};
 <!-- Duoshuo Comment END -->
 </article>
 
+        </div>
+      </div>
     </div>
-		<footer></footer>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd764d28cada8e1a7a6f120030c2faf6d' type='text/javascript'%3E%3C/script%3E"));
-</script>
-	</body>
+  </body>
 </html>
