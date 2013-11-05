@@ -4,14 +4,14 @@ title: 日志
 nav: arch
 ---
 <h3>日志列表</h3>
-<ul class="unstyled">
+<ul>
   {%for post in site.posts%}
   <li>
   <h4>
     <a href='{{post.url}}'>{{post.title}}</a>
     <small>
       {%for tag in post.tags%}
-      <a href="#{{tag}}" class="tag"><span class="label">{{tag}}</span></a>
+      <a href="#{{tag}}" class="tag">{{tag}}</a>
       {%endfor%}
       <time>{{post.date|date:"%Y-%m-%d"}}</time>
     </small>
@@ -23,20 +23,22 @@ nav: arch
 <h3>标签</h3>
 <div id="tags">
   {%for tag in site.tags%}
-  <a href="#{{tag[0]}}" class="tag"><span class="label">{{tag[0]}}</span></a>
+  <a href="#{{tag[0]}}" class="tag">{{tag[0]}}</a>
   {%endfor%}
 </div>
 
-<ul class="unstyled">
+<ul>
   {%for tag in site.tags%}
-    <li id='{{tag[0]}}'><strong>{{tag[0]}}</strong></li>
-    <ul>
-      {%for post in tag[1]%}
-        <li>
-          <time>{{post.date|date:"%Y-%m-%d"}}</time>
-          <a href='{{post.url}}'>{{post.title}}</a>
-        </li>
-      {%endfor%}
-    </ul>
+  <li id='{{tag[0]}}'>
+  <h6>{{tag[0]}}</h6>
+  <ul>
+    {%for post in tag[1]%}
+    <li>
+    <time>{{post.date|date:"%Y-%m-%d"}}</time>
+    <a href='{{post.url}}'>{{post.title}}</a>
+    </li>
+    {%endfor%}
+  </ul>
+  </li>
   {%endfor%}
 </ul>                                    

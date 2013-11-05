@@ -5,31 +5,15 @@
     <title>
       {%if page.title%}{{page.title}}-{%endif%}且慢
     </title>
-    <link rel='stylesheet' href='/bootstrap.css' />
   </head>
   <body>
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <a class="brand" href="/">且慢</a>
-        <ul class="nav">
-          <li id="arch"><a href='/archive.html'>日志</a></li>
-          <li id='resume'><a href='/resume.html'>简历</a></li>
-          <li id='lab'><a href='/lab.html'>杂货</a></li>
-        </ul>
-      </div>
-    </div>
-    {%if page.nav%}
-    <script>
-      document.getElementById('{{page.nav}}').
-        className="active";
-    </script>
-    {%endif%}
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
-          {{content}}
-        </div>
-      </div>
-    </div>
+    <nav>
+      <ul>
+        <li id="main"><a class="brand" href="/">且慢</a></li>
+        <li id="arch"><a href='/archive.html'>日志</a></li>
+        <li id='lab'><a href='/lab.html'>杂货</a></li>
+      </ul>
+    </nav>
+    <div>{{content}}</div>
   </body>
 </html>
