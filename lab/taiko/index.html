@@ -1,26 +1,18 @@
 ---
 layout: default
-nav: lab
+title: taiko
 ---
-<!DOCTYPE html>
-<html>
-<head>
-  <title>taiko</title>
-  <script src="chi.js"></script>
-  <script type="text/javascript" src="taiko.js"></script>
-  <style>#track{position: absolute;}#music{display: block;}</style>
-</head>
-<body>
-  <canvas id="track" height="60" width="800"></canvas>
-  <canvas id="bg" height="60" width="800"></canvas>
-  <div id="control">
-    <button onclick="start('wak()')">手动</button>
-    <button onclick="start('auto()')">自动</button>
-    <button onclick="pause()">暂停</button>
-    <button onclick="restart()">复位</button>
-    <button onclick="fullspeed()">全速</button>
-    <button onclick="slow()">慢速</button>
-  </div>
-  <div id="score"></div>
-</body>
-</html>
+<script src="chi.js"></script>
+<script src="taiko.js"></script>
+<style>#track{position: absolute;}#music{display: block;}</style>
+<canvas id="track" height="60" width="800"></canvas>
+<canvas id="bg" height="60" width="800"></canvas>
+<div id="control">
+  <button onclick="start('wak()')">手动</button>
+  <button onclick="start('auto()')">自动</button>
+  <button onclick="pause()">暂停</button>
+  <button onclick="restart()">复位</button>
+  <button onclick="fullspeed()">全速</button>
+  <button onclick="slow()">慢速</button>
+</div>
+<div id="score"></div>

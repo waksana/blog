@@ -1,21 +1,12 @@
 ---
 layout: default
-nav: lab
+title: life
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>life</title>
-    <script src="life.js"></script>
-  </head>
-  <body>
-    <canvas id="can" width="500" height="500">
-    </canvas>
-    <script>
-      window.onload=function(){
-        init();
-        self.setInterval('change()',100);
-      }
-    </script>
-  </body>
-</html>
+<canvas id="can" width="500" height="500"></canvas>
+<script src="life.js"></script>
+<script>
+  window.onload=function(){
+    init();
+    self.setInterval('change()',100);
+  }
+</script>

@@ -1,16 +1,9 @@
 ---
 layout: default
-nav: arch
 ---
-<article>
-	<h3>{{page.title}}</h3>
-	<section>
-		<time>{{page.date|date:"%Y-%m-%d"}}</time>
-		{%for tag in page.tags%}
-		<a href='/archive.html#{{tag}}'>#{{tag}}</a>
-		{%endfor%}
-	</section>
-	<section>
-		{{content}}
-	</section>
-</article>
+<section>
+  {%for tag in page.tags%}
+  <a href='/#{{tag}}'>#{{tag}}</a>
+  {%endfor%}
+</section>
+<section>{{content}}</section>

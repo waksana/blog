@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8' />
-    <title>
-      {%if page.title%}{{page.title}}-{%endif%}且慢
-    </title>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li id="main"><a class="brand" href="/">且慢</a></li>
-        <li id="arch"><a href='/archive.html'>日志</a></li>
-        <li id='lab'><a href='/lab.html'>杂货</a></li>
-      </ul>
-    </nav>
-    <div>{{content}}</div>
-  </body>
+<head>
+<meta charset='utf-8' />
+<title>{{page.title}}-且慢</title>
+</head>
+<body>
+<header>
+  <h1>{{page.title}}</h1>
+  {%if page.date%}<time>{{page.date|date:"%Y-%m-%d"}}</time>{%endif%}
+  <nav>
+    <ul>
+      <li><a href="/">回到主页</a></li>
+    </ul>
+  </nav>
+  <hr />
+</header>
+<article>{{content}}</article>
+<footer>
+  {%if page.previous%}
+  <li>&lt;<a href="{{page.previous.url}}">{{page.previous.title}}</a></li>
+  {%endif%}
+  {%if page.next%}
+  <li><a href="{{page.next.url}}">{{page.next.title}}</a>&gt;</li>
+  {%endif%}
+</footer>
+</body>
 </html>

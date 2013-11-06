@@ -1,21 +1,34 @@
 ---
 layout: default
-nav: main
+title: 日志
 ---
-<h3>欢迎来到我的主页！</h3>
-<div id="note">
-<!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"waksana"};
-(function() {
- var ds = document.createElement('script');
- ds.type = 'text/javascript';ds.async = true;
- ds.src = 'http://static.duoshuo.com/embed.js';
- ds.charset = 'UTF-8';
- (document.getElementsByTagName('head')[0] 
-  || document.getElementsByTagName('body')[0]).appendChild(ds);
- })();
-</script>
-<!-- Duoshuo Comment END -->
-</div>
+<ul>
+  {%for post in site.posts%}
+  <li>
+    <a href='{{post.url}}'>{{post.title}}</a>
+    <time>{{post.date|date:"%Y/%m/%d"}}</time>
+  </li>
+  {%endfor%}
+</ul>
+
+<ul>
+  {%for tag in site.tags%}
+  <li><a href="#{{tag[0]}}">{{tag[0]}}</a></li>
+  {%endfor%}
+</ul>
+
+<ul>
+  {%for tag in site.tags%}
+  <li id='{{tag[0]}}'>
+  <h3>{{tag[0]}}</h3>
+  <ul>
+    {%for post in tag[1]%}
+    <li>
+    <time>{{post.date|date:"%Y-%m-%d"}}</time>
+    <a href='{{post.url}}'>{{post.title}}</a>
+    </li>
+    {%endfor%}
+  </ul>
+  </li>
+  {%endfor%}
+</ul>                                    
