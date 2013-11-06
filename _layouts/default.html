@@ -2,27 +2,11 @@
 <html>
 <head>
 <meta charset='utf-8' />
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>{{page.title}}-且慢</title>
 </head>
 <body>
-<header>
-  <h1>{{page.title}}</h1>
-  {%if page.date%}<time>{{page.date|date:"%Y-%m-%d"}}</time>{%endif%}
-  <nav>
-    <ul>
-      <li><a href="/">回到主页</a></li>
-    </ul>
-  </nav>
-  <hr />
-</header>
+<h1>{{page.title}}</h1>
 <article>{{content}}</article>
-<footer>
-  {%if page.previous%}
-  <li>&lt;<a href="{{page.previous.url}}">{{page.previous.title}}</a></li>
-  {%endif%}
-  {%if page.next%}
-  <li><a href="{{page.next.url}}">{{page.next.title}}</a>&gt;</li>
-  {%endif%}
-</footer>
 </body>
 </html>

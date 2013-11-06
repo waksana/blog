@@ -2,8 +2,20 @@
 layout: default
 ---
 <section>
+  {%if page.date%}<time>{{page.date|date:"%Y-%m-%d"}}</time>{%endif%}
+  <a href="/">#Home</a>
   {%for tag in page.tags%}
   <a href='/#{{tag}}'>#{{tag}}</a>
   {%endfor%}
 </section>
 <section>{{content}}</section>
+<footer>
+  <nav>
+    {%if page.previous%}
+    &lt;<a href="{{page.previous.url}}">{{page.previous.title}}</a>
+    {%endif%}
+    {%if page.next%}
+    <a href="{{page.next.url}}">{{page.next.title}}</a>&gt;
+    {%endif%}
+  </nav>
+</footer>
