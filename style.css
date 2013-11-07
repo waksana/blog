@@ -1,0 +1,15 @@
+article {
+  max-width:600px;
+  color:#5b4636;
+  line-height:1.6em;
+}
+footer {
+  margin-top:1.6em;
+}
+body {
+  font-size:18px;
+  background-color:#fbf0d9;
+}
+time {
+  font-style:italic;
+}
