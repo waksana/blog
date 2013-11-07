@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: page
 title: 杂物
-tags: [timeless]
 ---
 ###[scheme解释器](lab/lov8)
 
