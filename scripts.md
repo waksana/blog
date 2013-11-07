@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 杂物
+title: 杂货
 ---
 ###[scheme解释器](lab/lov8)
 
