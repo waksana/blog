@@ -1,3 +1,7 @@
+body {
+  font-size:18px;
+  background-color:#fbf0d9;
+}
 article {
   max-width:600px;
   color:#5b4636;
@@ -6,10 +10,10 @@ article {
 footer {
   margin-top:1.6em;
 }
-body {
-  font-size:18px;
-  background-color:#fbf0d9;
-}
 time {
   font-style:italic;
+}
+summary {
+  cursor:pointer;
+  outline:0;
 }

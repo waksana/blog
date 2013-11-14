@@ -3,24 +3,15 @@ layout: default
 title: lov8
 ---
 <style>
-  html{height:100%;}
-  #body{
-    font-size:20px;
-    font-family:monospace;
-    height:99%;
-    margin:0px;
-    padding:0px;
-  }
-  :focus{outline:0;}
-  #cmd{
-    font-family:monospace;
-    font-size:20px;
-    border:none;
-    border:0px;
-    padding:0px;
-    margin:0px;
-    width:90%
-  }
+:focus{outline:0;}
+section{font-family:monospace;}
+#cmd{
+  font:inherit;
+  background:inherit;
+  border:0px;
+  margin:0px;
+  padding:0px;
+}
 </style>
 <script src='lov8.js'></script>
 <script>
@@ -28,13 +19,13 @@ window.onload=function(){
   var cmd=document.getElementById("cmd");
   var bodyel=document.body;
   var focusinput=function(){cmd.focus();};
-  var res=document.getElementById("output");
+  var res=document.getElementById("out");
   bodyel.onclick=focusinput;
   bodyel.onfocus=focusinput;
   window.document.onkeydown=function(event){
     ec=event.keyCode;
     if(ec===13){
-      res.innerHTML+="lov8$"+cmd.value+"<br />";
+      res.innerHTML+="lov8$ "+cmd.value+"<br />";
       res.innerHTML+=$(cmd.value)+"<br />";
       cmd.value="";
       bodyel.scrollTop=bodyel.scrollHeight;
@@ -43,5 +34,8 @@ window.onload=function(){
   cmd.focus();
 };
 </script>
-<div id="output"></div>
-lov8$<input id="cmd" type='text' maxlength="60" />
+<section>
+  <div id="out"></div>
+  <label>lov8$</label>
+  <input id="cmd" type='text' maxlength="60" />
+</section>
