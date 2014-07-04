@@ -2,12 +2,8 @@
 layout: page
 title: waksana
 ---
-*自由 & 探索 & 创造*
+我向往**自由**和**极简**的生活,乐于**探索**未知，志于**创造**美好。
 
-我追求更多的自由，也给别人更多的自由
-
-我会减少不必要的依赖，降低被控制的可能性
-
-并且我很少影响他人，避免损害他人的自由
-
-因此我缺乏影响力，接受任何观点，不负责任
+- [github](https://github.com/waksana)
+- [豆瓣读书](http://book.douban.com/people/ksana42/)
+- [微博](http://weibo.com/waksana)
