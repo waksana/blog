@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>测测你的敏捷度</title>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script>
+(function (window, document) {
+  function Tap(el) {
+    el = typeof el === 'object' ? el : document.getElementById(el);
+    this.element = el;
+    this.moved = false; //flags if the finger has moved
+    this.startX = 0; //starting x coordinate
+    this.startY = 0; //starting y coordinate
+    this.hasTouchEventOccured = false; //flag touch event
+    el.addEventListener('touchstart', this, false);
+    el.addEventListener('touchmove', this, false);
+    el.addEventListener('touchend', this, false);
+    el.addEventListener('touchcancel', this, false);
+    el.addEventListener('mousedown', this, false);
+    el.addEventListener('mouseup', this, false);
+  }
+
+  Tap.prototype.start = function (e) {
+    if (e.type === 'touchstart') {
+      this.hasTouchEventOccured = true;
+    }
+    this.moved = false;
+    this.startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    this.startY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+  };
+
+  Tap.prototype.move = function (e) {
+    if (Math.abs(e.touches[0].clientX - this.startX) > 10 || Math.abs(e.touches[0].clientY - this.startY) > 10) {
+      this.moved = true;
+    }
+  };
+
+  Tap.prototype.end = function (e) {
+    var evt;
+
+    if (this.hasTouchEventOccured && e.type === 'mouseup') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.hasTouchEventOccured = false;
+      return;
+    }
+
+    if (!this.moved) {
+      if (window.CustomEvent) {
+        evt = new window.CustomEvent('tap', {
+          bubbles: true,
+          cancelable: true
+        });
+      } else {
+        evt = document.createEvent('Event');
+        evt.initEvent('tap', true, true);
+      }
+      if (!e.target.dispatchEvent(evt)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  Tap.prototype.cancel = function (e) {
+    this.hasTouchEventOccured = false;
+    this.moved = false;
+    this.startX = 0;
+    this.startY = 0;
+  };
+
+  Tap.prototype.destroy = function () {
+    var el = this.element;
+    el.removeEventListener('touchstart', this, false);
+    el.removeEventListener('touchmove', this, false);
+    el.removeEventListener('touchend', this, false);
+    el.removeEventListener('touchcancel', this, false);
+    el.removeEventListener('mousedown', this, false);
+    el.removeEventListener('mouseup', this, false);
+    this.element = null;
+  };
+
+  Tap.prototype.handleEvent = function (e) {
+    switch (e.type) {
+      case 'touchstart': this.start(e); break;
+      case 'touchmove': this.move(e); break;
+      case 'touchend': this.end(e); break;
+      case 'touchcancel': this.cancel(e); break;
+      case 'mousedown': this.start(e); break;
+      case 'mouseup': this.end(e); break;
+    }
+  };
+
+  window.Tap = Tap;
+
+}(window, document));
+</script>
+<style>
+
+body>span>a {
+  display: none;
+}
+body>a>img {
+  display: none;
+}
+body {
+  background-color: #6f5499;
+  color: #fff;
+}
+p {
+  font-size: 25px;
+  text-align: center;
+}
+.small {
+  float: right;
+}
+.s2, .s3 {
+  display: none;
+}
+.btn {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  text-align: center;
+  display: block;
+  font-size: 30px;
+  width: auto;
+  padding: 15px 30px;
+  border: 1px solid white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn.active {
+  background-color: green;
+}
+</style>
+</head>
+<body>
+<div class="s1">
+  <p>测试你的敏捷度</p>
+  <p>当按钮改变颜色时迅速点击</p>
+  <a class="btn" onclick="start()">开始游戏</a>
+</div>
+<div class="s2">
+  <div class="score">
+    <p id="sc1">成绩一</p>
+    <p id="sc2">成绩二</p>
+    <p id="sc3">成绩三</p>
+  </div>
+  <a class="btn" id="btn"></a>
+</div>
+<div class="s3">
+  <p id="result"></p>
+  <p id="scorep"</p>
+  <p>点击右上角告诉朋友们！</p>
+  <a class="btn" onclick="start()">重新测试</a>
+  <br>
+  <br>
+  <p>
+  广告
+  <a href="http://www.amazon.cn/gp/product/B00JG8FMO6/ref=as_li_tf_tl?ie=UTF8&camp=536&creative=3200&creativeASIN=B00JG8FMO6&linkCode=as2&tag=waksana07-23">全新Kindle Paperwhite电子书阅读器</a><img src="http://ir-cn.amazon-adsystem.com/e/ir?t=waksana07-23&l=as2&o=28&a=B00JG8FMO6" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+  </p>
+  <small class="small"><a href="http://weibo.com/waksana" target="_blank">我做的@waksana</a></small>
+</div>
+</body>
+<script>
+var s1 = $('.s1');
+var s2 = $('.s2');
+var s3 = $('.s3');
+var btn = $('#btn');
+var res = $('#result');
+var scp = $('#scorep');
+var tming = false;
+window.shareData = {
+  "imgUrl": "http://waksana.u.qiniudn.com/ren.jpg",
+  "timeLineLink": "http://waksana.u.qiniudn.com/index.html",
+  "tTitle": '测测你的敏捷度,干什么都要快',
+  "tContent": '常人的反应时间是0.6秒,良好的训练能极大降低反应时间'
+};
+new Tap(btn[0]);
+btn[0].addEventListener('tap', function() {
+  stop();
+}, false);
+var sc = [
+  $('#sc1'),
+  $('#sc2'),
+  $('#sc3')
+];
+var score, interval, playing, it, going, to;
+var start = function() {
+  window.shareData.tTitle = '测测你的敏捷度,干什么都要快';
+  s1.hide();
+  s2.show();
+  s3.hide();
+  btn.html('集中注意');
+  btn.removeClass('active');
+  sc[0].html('成绩一');
+  sc[1].html('成绩二');
+  sc[2].html('成绩三');
+  score = [];
+  interval = generateInterval();
+  playing = 0;
+  play();
+};
+var result = function() {
+  tming = false;
+  s1.hide();
+  s2.hide();
+  s3.show();
+  if(playing == 9) {
+    res.html('你抢跑咯，等到按钮变颜色了再开始哟~')
+    scp.html('');
+  }
+  else {
+    final_score = (score[0] + score[1] + score[2]) / 3;
+    var sl;
+    if(final_score > 5){
+      content = '你是来打酱油的吧=_=#';
+      sl = '酱油';
+    }
+    else if(final_score > 2) {
+      content = '咳咳，反映有点慢哟';
+      sl = '菜鸟';
+    }
+    else if(final_score > 0.6) {
+      content = '你是一个普通青年';
+      sl = '正常人类';
+    }
+    else if(final_score > 0.4) {
+      content = '我从没见过像你这么厉害的人';
+      sl = '不正常人类';
+    }
+    else if(final_score > 0.2) {
+      content = '超人,你隐藏得太深啦';
+      sl = '超人';
+    }
+    else {
+      content = '别人问我为什么跪着打字..';
+      sl = '神人';
+    }
+    res.html(content);
+    var fs = final_score.toFixed(2) + '秒';
+    var cm = '的反映时间是' + final_score.toFixed(2) + '秒。获得'+sl+'称号。';
+    window.shareData.tTitle = '我' + cm + '快来超越我吧！';
+    scp.html('你' + cm);
+  }
+};
+var play = function() {
+  if(playing > 2) {
+    if(tming) return;
+    timing = true;
+    return setTimeout(result, 600);
+  }
+  sc[playing].html('测试中...');
+  to = setTimeout(count, interval[playing]);
+};
+var count = function() {
+  btn.addClass('active');
+  score[playing] = 0;
+  going = true;
+  it = setInterval(function() {
+    score[playing] += 0.01;
+    btn.html(score[playing].toFixed(2));
+  }, 10);
+};
+var stop = function() {
+  if(going != true) {
+    clearTimeout(to);
+    playing = 9;
+    return play();
+  }
+  going = false;
+  btn.html('全神灌注');
+  btn.removeClass('active');
+  clearInterval(it);
+  sc[playing].html(score[playing].toFixed(2));
+  playing++;
+  play();
+};
+var generateInterval = function() {
+  return [
+    1000 * (Math.random() * 1 + 2),
+    1000 * (Math.random() * 1 + 2),
+    1000 * (Math.random() * 1 + 2)
+  ];
+};
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0a5cdd31b6d905c0c982a2dfdfc8057e' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+  WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+    WeixinJSBridge.invoke('sendAppMessage', {
+      "img_url": window.shareData.imgUrl,
+      "link": window.shareData.timeLineLink,
+      "desc": window.shareData.tContent,
+      "title": window.shareData.tTitle
+    }, function(res) {
+      document.location.href = mebtnopenurl;
+    })
+  });
+  WeixinJSBridge.on('menu:share:timeline', function(argv) {
+    WeixinJSBridge.invoke('shareTimeline', {
+      "img_url": window.shareData.imgUrl,
+      "img_width": "640",
+      "img_height": "640",
+      "link": window.shareData.timeLineLink,
+      "desc": window.shareData.tContent,
+      "title": window.shareData.tTitle
+    }, function(res) {
+      document.location.href = mebtnopenurl;
+    });
+  });
+  WeixinJSBridge.on('menu:share:weibo', function(argv) {
+    WeixinJSBridge.invoke('shareWeibo', {
+      "content": window.shareData.tContent,
+      "url": window.shareData.timeLineLink
+    }, function(res) {
+      document.location.href = mebtnopenurl;
+    });
+  });
+}, false);
+</script>
+</html>
