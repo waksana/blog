@@ -3,10 +3,7 @@ layout: default
 ---
 <section>
   {%if page.date%}<time>{{page.date|date:"%Y-%m-%d"}}</time>{%endif%}
-  <a href="/">#主页</a>
-  {%for tag in page.tags%}
-  <a href='/#{{tag}}'>#{{tag}}</a>
-  {%endfor%}
+  <a href="/">主页</a>
 </section>
 <article>{{content}}</article>
 <footer>

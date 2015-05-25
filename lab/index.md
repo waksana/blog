@@ -2,7 +2,7 @@
 layout: page
 title: 杂货
 ---
-###[scheme解释器](lov8)
+###[lov8](lov8)
 
 js实现的scheme解释器半成品。只有四则运算功能，还有个define功能，可是有点问题。
 
