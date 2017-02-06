@@ -2,11 +2,28 @@
 <html>
 
 <head>
-<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{% if page.title %}
+<title>{{ page.title }}</title>
+{% else %}
+<title>{{ site.name }}</title>
+{% endif %}
+
+<meta name="description" content="{{ site.description }}">
+
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 </head>
-<style>
-body { max-width: 600px; }
-</style>
-<body> {{ content }} </body>
+
+<body>
+
+<div class="wrapper">
+  {{ content }}
+</div>
+
+</body>
 
 </html>

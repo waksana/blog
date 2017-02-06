@@ -1,5 +1,8 @@
-theme: jekyll-theme-modernist
-baseurl: "/blog"
+#baseurl: "/blog"
+
+name: 且慢
+description: waksana blog
+
 defaults:
   -
     scope:
@@ -7,3 +10,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+
+sass:
+  style: :compressed
+  sass_dir: _sass
