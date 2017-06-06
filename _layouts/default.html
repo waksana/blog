@@ -5,6 +5,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+<style>
+time {
+  color: #c4c4c4;
+  float: right;
+  font-style: italic;
+}
+.menu-item {
+  color: #0366d6;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0px;
+}
+.content {
+  max-width: 40em;
+  margin: auto;
+}
+</style>
+
 {% if page.title %}
 <title>{{ page.title }}</title>
 {% else %}
@@ -13,16 +32,11 @@
 
 <meta name="description" content="{{ site.description }}">
 
-<link rel="stylesheet"
-href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
-<link rel="stylesheet" type="text/css" href="{{"/css/main.css" | prepend: site.baseurl}}">
 </head>
 
 <body>
 
-<div class="wrapper">
-  {{ content }}
-</div>
+<div class="content"> {{ content }} </div>
 
 </body>
 

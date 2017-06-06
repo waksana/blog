@@ -1,20 +1,14 @@
 ---
 layout: default
 ---
-<div class="header">
+<header>
   <h1>{{ site.name }}</h1>
-  <ul>
-    <li>
-      <a href="https://github.com/waksana">github</a>
-    </li>
-  </ul>
-</div>
-<div class="blog">
-  <ul>
-    {% for post in site.posts %}
-    <li>
-    <span class="date">{{ post.date | date: '%Y %b %d' }}</span> - <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+</header>
+<nav>
+  {% for post in site.posts %}
+  <a class="menu-item" href="{{ post.url | prepend: site.baseurl }}">
+    {{ post.title }}
+    <time>{{ post.date | date_to_string}}</time>
+  </a>
+  {% endfor %}
+</nav>

@@ -10,7 +10,3 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-
-sass:
-  style: :compressed
-  sass_dir: _sass
