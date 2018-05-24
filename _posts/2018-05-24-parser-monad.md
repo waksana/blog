@@ -1,14 +1,14 @@
-在看haskell的相关资料时，发现了一个有趣的系列，叫《functional pearl》里面的每一篇讲了函数式编程中的一个优美的小用法。今天介绍一下parser。
+在看haskell的相关资料时，发现了一个有趣的系列，叫《functional pearl》里面的每一篇讲了函数式编程中的一个优美的小用法。我看了其中有一篇讲parser的。在这里总结一下。
 
-haskell中可以定义一个monad来做parser。各种各样的parser通过monad绑定的方式组合在一起可以解析一些复杂的语法文本。是一个比较有意思的monad。
+haskell中可以定义一个`Parser Monad`。各种各样的`Parser`的组合可以表示`BNF`表达式。`Parser`是一个比较有意思的`Monad`。
 
 ```
 newtype Parser a = Parser {parse :: String -> [(a, String)]}
 ```
 
-我们定义的这个monad，是包了一个类型的函数。这个函数输入一个字符串，从中解析出相应类型`a` `的信息之后返回类型为`a`的值和剩余待解析的字符串。结果可能为多个所以由数组表示。解析失败则返回空数组。
+我们定义的这个新类型是函数。这个函数输入一个字符串，从中解析出相应类型`a`的信息，之后返回类型为`a`的值和剩余待解析的字符串。函数的结果可能为多个值，所以使用数组表示。返回空数组代表解析失败。
 
-然后我们可以将新得到的`Parser`类型实现为`Monad`。实现的思路很简单，就是依次运行两个parser。但是两个parser的结果都为数组，所以这边又用了数组`Monad`来实现多返回值的计算。
+然后我们可以将新得到的`Parser`类型实现为`Monad`。实现的思路很简单，就是依次运行两个parser。由于两个parser的结果都为数组，这边又用了数组`Monad`来实现多返回值的计算。
 
 ```
 instance Monad Parser where
@@ -16,7 +16,7 @@ instance Monad Parser where
   p >>= f = Parser (\s -> do {(a, s') <- parse p s; parse (f a) s'})
 ```
 
-到此，我们可以使用`>>=`操作来顺序组合parser了。在bnf中，除了顺序组合之外还大量运用到了`|`或运算也就是并行逻辑，我们可以引入`MonadPlus`使用相加的方式来组合`Parser`。
+到此，我们可以使用`>>=`操作来顺序组合parser了。在`BNF`表达式中，除了顺序组合之外还用到了或运算。为了实现或运算，先让`Parser`实现为`MonadPlus`。
 
 ```
 instance MonadPlus Parser where
@@ -24,9 +24,9 @@ instance MonadPlus Parser where
   p `mplus` q = Parser (\s -> parse p s ++ parse q s)
 ```
 
-可以看到使用了mplus之后会把成功的匹配都记录下来，但是我们常常只需要其中的一个匹配就可以了于是就引入了`+++`操作，这个操作可以理解为当第一个`Parser`解析失败之后返回第二个`Parser`的结果。这才是我们真正想要的`bnf`中的`|`。
+`mplus`会把两个`Parser`的匹配都记录下来。当第一个`Parser`匹配失败时`mplus`的值就是第二个`Parser`。`mzero`是`mplus`的幺元。在实际使用中，常常只需要其中的一个匹配。于是就引入了`+++`操作：取第一个成功的结果。就相当于`BNF`表达式中的或运算。
 
-```haskell
+```
 (+++) :: Parser a -> Parser a -> Parser a
 p +++ q = Parser (\s -> sHead $ parse (p `mplus` q) s)
   where
@@ -34,22 +34,24 @@ p +++ q = Parser (\s -> sHead $ parse (p `mplus` q) s)
     sHead (x:_) = [x]
 ```
 
-我们现在尝试将`bnf`翻译成haskell `Parser`。
+我们现在尝试将`BNF`表达式翻译成`Parser`。
 
-`bnf`版本
+`BNF`表达式
 
 ```
 expr ::= number add expr | number
 ```
 
-`haskell`版本
+`Parser`
 
 ```
 expr = do {number; add; expr} +++ number
 ```
 
-但是现在定义的`Parser`是有局限的，无法表左递归的表达式。以下这个表达式在haskell中会陷入无限循环当中。所以当一个结构包含自身的时候就需要注意我们的`Parser`
+这里定义的`Parser`是有局限的，他无法表左递归的表达式。例如以下这个表达式使用`Parser`表现就会陷入无限循环。
 
 ```
 expr ::= expr add number | number
 ```
+
+从一个`Monad`出发，最后得到像`BNF`一样的表达式，`haskell`的抽象能力总是让我惊叹。如果两种语言表达同一种逻辑那他们的最简形式是否总是相同的？
