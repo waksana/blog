@@ -48,7 +48,7 @@ expr ::= number add expr | number
 expr = do {number; add; expr} +++ number
 ```
 
-但是现在定义的`Parser`是有局限的，无法表达任意的`bnf`。以下这个表达式在haskell中会陷入无限循环当中。所以当一个结构包含自身的时候就需要注意我们的`Parser`
+但是现在定义的`Parser`是有局限的，无法表左递归的表达式。以下这个表达式在haskell中会陷入无限循环当中。所以当一个结构包含自身的时候就需要注意我们的`Parser`
 
 ```
 expr ::= expr add number | number
