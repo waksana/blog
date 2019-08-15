@@ -2,7 +2,7 @@
 
 haskell中可以定义一个`Parser Monad`。各种各样的`Parser`的组合可以表示`BNF`表达式。`Parser`是一个比较有意思的`Monad`。
 
-```
+```haskell
 newtype Parser a = Parser {parse :: String -> [(a, String)]}
 ```
 
@@ -10,7 +10,7 @@ newtype Parser a = Parser {parse :: String -> [(a, String)]}
 
 然后我们可以将新得到的`Parser`类型实现为`Monad`。实现的思路很简单，就是依次运行两个parser。由于两个parser的结果都为数组，这边又用了数组`Monad`来实现多返回值的计算。
 
-```
+```haskell
 instance Monad Parser where
   return a = Parser \s -> [(a, s)]
   p >>= f = Parser (\s -> do {(a, s') <- parse p s; parse (f a) s'})
@@ -18,7 +18,7 @@ instance Monad Parser where
 
 到此，我们可以使用`>>=`操作来顺序组合parser了。在`BNF`表达式中，除了顺序组合之外还用到了或运算。为了实现或运算，先让`Parser`实现为`MonadPlus`。
 
-```
+```haskell
 instance MonadPlus Parser where
   mzero = \_ -> []
   p `mplus` q = Parser (\s -> parse p s ++ parse q s)
@@ -26,7 +26,7 @@ instance MonadPlus Parser where
 
 `mplus`会把两个`Parser`的匹配都记录下来。当第一个`Parser`匹配失败时`mplus`的值就是第二个`Parser`。`mzero`是`mplus`的幺元。在实际使用中，常常只需要其中的一个匹配。于是就引入了`+++`操作：取第一个成功的结果。就相当于`BNF`表达式中的或运算。
 
-```
+```haskell
 (+++) :: Parser a -> Parser a -> Parser a
 p +++ q = Parser (\s -> sHead $ parse (p `mplus` q) s)
   where
@@ -38,19 +38,19 @@ p +++ q = Parser (\s -> sHead $ parse (p `mplus` q) s)
 
 `BNF`表达式
 
-```
+```ebnf
 expr ::= number add expr | number
 ```
 
 `Parser`
 
-```
+```haskell
 expr = do {number; add; expr} +++ number
 ```
 
 这里定义的`Parser`是有局限的，他无法表左递归的表达式。例如以下这个表达式使用`Parser`表现就会陷入无限循环。
 
-```
+```ebnf
 expr ::= expr add number | number
 ```
 
